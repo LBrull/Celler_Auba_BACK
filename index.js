@@ -94,15 +94,30 @@ app.post('/api/product', (req, res) => {
 })
 
 app.put('/api/client/:clientId', (req, res) => {
-
+    let clientId = req.params.clientId
+    let body = req.body
+    Client.findByIdAndUpdate(clientId, body, (err, updatedClient) => {
+        if (err) res.status(500).send('Could not update the client')
+        res.status(200).send({client: updatedClient})
+    })
 })
 
 app.put('/api/provider/:providerId', (req, res) => {
-
+    let providerId = req.params.providerId
+    let body = req.body
+    Provider.findByIdAndUpdate(providerId, body, (err, updatedProvider) => {
+        if (err) res.status(500).send('Could not update the provider')
+        res.status(200).send({provider: updatedProvider})
+    })
 })
 
 app.put('/api/product/:productId', (req, res) => {
-
+    let productId = req.params.productId
+    let body = req.body
+    Product.findByIdAndUpdate(productId, body, (err, updatedProduct) => {
+        if (err) res.status(500).send('Could not update the product')
+        res.status(200).send({product: updatedProduct})
+    })
 })
 
 app.delete('/api/client/:clientId', (req, res) => {
