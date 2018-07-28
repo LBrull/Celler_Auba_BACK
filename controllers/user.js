@@ -20,17 +20,19 @@ function signIn(req, res) {
         if (err) return res.status(500).send({message: err})
         if (!user) return res.status(404).send({message: 'The user does not exist'})
         req.user = user
-        console.log(user)
-        if (user.checkPassword(req.body.password)) {
-            res.status(200).send({
-                message:'Log in successful',
-                token: service.createToken(user)
-    
-            })
-        }
-        else {
-            return res.status(400).send({message: 'Incorrect password'})
-        }
+        user.comparePassword(req.body.password, function (err, cb) {
+            if (err) res.status(500).send({message: 'Error comparing passwords'})
+            if (cb) {
+                res.status(200).send({
+                    message:'Log in successful',
+                    token: service.createToken(user)
+        
+                })
+            }
+            else {
+                return res.status(400).send({message: 'Incorrect password'})
+            }
+        })
     })
 }
 
