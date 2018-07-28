@@ -11,7 +11,7 @@ function signUp(req, res) {
     })
     user.save((err) => {
         if (err) res.status(500).send({message: `Error creating user: ${err}`})
-        return res.status(200).send({message: 'This is your token: ', token: service.createToken(user)})
+        return res.status(200).send({message: 'User has been saved: ', token: service.createToken(user)})
     })
 }
 

@@ -11,6 +11,7 @@ const productController = require('./controllers/product')
 const userController = require('./controllers/user')
 
 const auth = require('./middlewares/auth')
+const authAdmin = require('./middlewares/authAdmin')
 
 const app = express()
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -38,7 +39,7 @@ app.delete('/api/product/:productId', auth, productController.deleteProduct)
 app.get('/api/private', auth, (req,res) => {
     res.status(200).send({message: 'Authorized'})
 })
-app.post('/api/signup', userController.signUp)
+app.post('/api/signup', authAdmin, userController.signUp)
 app.post('/api/signIn', userController.signIn)
 
 ///////////////////////////// DB CONNECTION /////////////////////////////////////////
