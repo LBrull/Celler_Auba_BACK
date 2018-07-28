@@ -6,8 +6,7 @@ const service = require('../services/index')
 
 function signUp(req, res) {
     const user = new User({
-        email: req.body.email,
-        displayName: req.body.displayName,
+        username: req.body.username,
         password: req.body.password
     })
     user.save((err) => {
@@ -17,14 +16,21 @@ function signUp(req, res) {
 }
 
 function signIn(req, res) {
-    User.find({email: req.body.email}, (err, user) => {
+    User.findOne({username: req.body.username}, function (err, user) {
         if (err) return res.status(500).send({message: err})
         if (!user) return res.status(404).send({message: 'The user does not exist'})
         req.user = user
-        res.status(200).send({
-            message:'Log in successful',
-            token: service.createToken(user)
-        })
+        console.log(user)
+        if (user.checkPassword(req.body.password)) {
+            res.status(200).send({
+                message:'Log in successful',
+                token: service.createToken(user)
+    
+            })
+        }
+        else {
+            return res.status(400).send({message: 'Incorrect password'})
+        }
     })
 }
 
