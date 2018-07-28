@@ -39,6 +39,9 @@ app.delete('/api/product/:productId', auth, productController.deleteProduct)
 app.get('/api/private', auth, (req,res) => {
     res.status(200).send({message: 'Authorized'})
 })
+
+// Only admin can signup a new user to the system.
+// Admin has to enter his username and his password to get authorization
 app.post('/api/signup', authAdmin, userController.signUp)
 app.post('/api/signIn', userController.signIn)
 
