@@ -9,6 +9,8 @@ const clientController = require('./controllers/client')
 const providerController = require('./controllers/provider')
 const productController = require('./controllers/product')
 
+const auth = require('./middlewares/auth')
+
 const app = express()
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
@@ -31,6 +33,10 @@ app.get('/api/product/:productId', productController.getProduct)
 app.post('/api/product', productController.saveProduct)
 app.put('/api/product/:productId', productController.updateProduct)
 app.delete('/api/product/:productId', productController.deleteProduct)
+
+app.get('/private', auth, function(req,res) {
+    res.status(200).send({message: 'Access'})
+})
 
 ///////////////////////////// DB CONNECTION /////////////////////////////////////////
 mongoose.connect(config.db, {useNewUrlParser: true}, (err, res) => {
