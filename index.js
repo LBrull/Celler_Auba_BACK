@@ -8,6 +8,7 @@ const config = require('./config')
 const clientController = require('./controllers/client')
 const providerController = require('./controllers/provider')
 const productController = require('./controllers/product')
+const userController = require('./controllers/user')
 
 const auth = require('./middlewares/auth')
 
@@ -16,27 +17,29 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 ////////////////////////// ROUTES /////////////////////////////
-app.get('/api/clients', clientController.getClients)
-app.get('/api/client/:clientId', clientController.getClient)
-app.post('/api/client', clientController.saveClient)
-app.put('/api/client/:clientId', clientController.updateClient)
-app.delete('/api/client/:clientId', clientController.deleteClient)
+app.get('/api/clients', auth, clientController.getClients)
+app.get('/api/client/:clientId', auth, clientController.getClient)
+app.post('/api/client', auth, clientController.saveClient)
+app.put('/api/client/:clientId', auth, clientController.updateClient)
+app.delete('/api/client/:clientId', auth, clientController.deleteClient)
 
-app.get('/api/providers', providerController.getProviders)
-app.get('/api/provider/:providerId', providerController.getProvider)
-app.post('/api/provider', providerController.saveProvider)
-app.put('/api/provider/:providerId', providerController.updateProvider)
-app.delete('/api/provider/:providerId', providerController.deleteProvider)
+app.get('/api/providers', auth, providerController.getProviders)
+app.get('/api/provider/:providerId', auth, providerController.getProvider)
+app.post('/api/provider', auth, providerController.saveProvider)
+app.put('/api/provider/:providerId', auth, providerController.updateProvider)
+app.delete('/api/provider/:providerId', auth, providerController.deleteProvider)
 
-app.get('/api/products', productController.getProducts)
-app.get('/api/product/:productId', productController.getProduct)
-app.post('/api/product', productController.saveProduct)
-app.put('/api/product/:productId', productController.updateProduct)
-app.delete('/api/product/:productId', productController.deleteProduct)
+app.get('/api/products', auth, productController.getProducts)
+app.get('/api/product/:productId', auth, productController.getProduct)
+app.post('/api/product', auth, productController.saveProduct)
+app.put('/api/product/:productId', auth, productController.updateProduct)
+app.delete('/api/product/:productId', auth, productController.deleteProduct)
 
-app.get('/private', auth, function(req,res) {
-    res.status(200).send({message: 'Access'})
+app.get('/api/private', auth, (req,res) => {
+    res.status(200).send({message: 'Authorized'})
 })
+app.post('/api/signup', userController.signUp)
+app.post('/api/signIn', userController.signIn)
 
 ///////////////////////////// DB CONNECTION /////////////////////////////////////////
 mongoose.connect(config.db, {useNewUrlParser: true}, (err, res) => {
