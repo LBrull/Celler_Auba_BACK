@@ -17,6 +17,7 @@ function signUp(req, res) {
 
 function signIn(req, res) {
     User.findOne({username: req.body.username}, function (err, user) {
+        console.log(req.body.username)
         if (err) return res.status(500).send({message: err})
         if (!user) return res.status(404).send({message: 'The user does not exist'})
         req.user = user
