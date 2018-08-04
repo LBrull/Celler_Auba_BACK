@@ -25,6 +25,7 @@ function saveProduct(req, res) {
     let product = new Product()
     product.code = req.body.code
     product.description = req.body.description
+    product.type = req.body.type
     product.price = req.body.price
 
     product.save((err, productStored) => {
