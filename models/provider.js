@@ -11,7 +11,7 @@ const providerSchema = Schema({
     "cp" : String,
     "town" : String,
     "address" : String,
-    "dni_nif" : String,
+    "dni_nif" : { type: String, required: true, index: { unique: true } },
     "accountNumber" : String
 },{ versionKey: false })
 
