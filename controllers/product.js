@@ -14,7 +14,7 @@ function getProduct(req, res) {
 function getProducts(req, res) {
     Product.find({}, (err, products) => {
         if (err) return res.status(500).send({message: "Error getting all products"})
-        if (products.length == 0) return res.status(200).send({message: "Empty collection"})
+        //if (products.length == 0) return res.status(200).send({message: "Empty collection"})
         res.status(200).send(products)
     })
 }
