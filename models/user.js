@@ -9,7 +9,7 @@ const UserSchema = new Schema({
     password: { type: String, required: true },
     signupDate: { type: Date, default: Date.now() },
     lastLogin: Date
-})
+},{ versionKey: false })
 
 UserSchema.pre('save', function (next) {
 

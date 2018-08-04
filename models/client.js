@@ -13,6 +13,6 @@ const clientSchema = Schema({
     "address" : String,
     "dni_nif" : String,
     "accountNumber" : String
-})
+},{ versionKey: false })
 
 module.exports = mongoose.model('Client', clientSchema, 'clients')
