@@ -42,7 +42,7 @@ app.get('/api/private', auth, (req,res) => {
 
 // Only admin can signup a new user to the system.
 // Admin has to enter his username and his password to get authorization
-app.post('/api/signup', userController.signUp)
+app.post('/api/signup',authAdmin, userController.signUp)
 app.post('/api/signIn', userController.signIn)
 
 ///////////////////////////// DB CONNECTION /////////////////////////////////////////
