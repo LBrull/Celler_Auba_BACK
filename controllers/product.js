@@ -14,7 +14,6 @@ function getProduct(req, res) {
 function getProducts(req, res) {
     Product.find({}, (err, products) => {
         if (err) return res.status(500).send({message: "Error getting all products"})
-        //if (products.length == 0) return res.status(200).send({message: "Empty collection"})
         res.status(200).send(products)
     })
 }
@@ -29,7 +28,7 @@ function saveProduct(req, res) {
     product.price = req.body.price
 
     product.save((err, productStored) => {
-        if (err) res.status(500).send('Could not save the product')
+        if (err) res.status(500).send({message: 'Could not save the product'})
         res.status(200).send({product: productStored})
     })
 }
@@ -38,7 +37,7 @@ function updateProduct(req, res) {
     let productId = req.params.productId
     let body = req.body
     Product.findByIdAndUpdate(productId, body, (err, updatedProduct) => {
-        if (err) res.status(500).send('Could not update the product')
+        if (err) res.status(500).send({message: 'Could not update the product'})
         res.status(200).send({product: updatedProduct})
     })
 }
