@@ -22,7 +22,6 @@ function saveProduct(req, res) {
     console.log('POST /api/product')
     console.log(req.body)
     let product = new Product()
-    product.code = req.body.code
     product.description = req.body.description
     product.type = req.body.type
     product.price = req.body.price
@@ -37,7 +36,7 @@ function updateProduct(req, res) {
     let productId = req.params.productId
     let body = req.body
     Product.findByIdAndUpdate(productId, body, (err, updatedProduct) => {
-        if (err) res.status(500).send({message: 'Could not update the product'})
+        if (err) res.status(500).send({message: `Could not update the product: ${err}`})
         res.status(200).send({product: updatedProduct})
     })
 }
