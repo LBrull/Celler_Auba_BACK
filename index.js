@@ -52,7 +52,6 @@ mongoose.connect(config.db, {useNewUrlParser: true}, (err, res) => {
     }
     console.log('Connected successfully to celler_aubarcaDB')
     app.listen(config.port, () => {
-    console.log(`Server running on http://localhost:${config.port}`)
     })
 })
 

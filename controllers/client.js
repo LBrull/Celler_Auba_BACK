@@ -14,7 +14,6 @@ function getClient(req, res) {
 function getClients(req, res) {
     Client.find({}, (err, clients) => {
         if (err) return res.status(500).send({message: "Error getting all clients"})
-        //if (clients.length == 0) return res.status(200).send({message: "Empty collection"})
         res.status(200).send(clients)
     })
 }
