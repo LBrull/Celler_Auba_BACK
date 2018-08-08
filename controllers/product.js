@@ -37,14 +37,11 @@ function updateProduct(req, res) {
     let body = req.body
     Product.findByIdAndUpdate(productId, body, (err, updatedProduct) => {
         if (err) res.status(500).send({message: `Could not update the product: ${err}`})
-        let newProductDesc = req.body.description
-        let newProductType = req.body.type
-        let newProductPrice = req.body.price
         let newProduct = new Product()
         newProduct.productId = productId
-        newProduct.description = newProductDesc
-        newProduct.type = newProductType
-        newProduct.price = newProductPrice
+        newProduct.description = req.body.description
+        newProduct.type = req.body.type
+        newProduct.price = req.body.price
         res.status(200).send({product: newProduct})
     })
 }
