@@ -14,7 +14,6 @@ function getProvider(req, res) {
 function getProviders(req, res) {
     Provider.find({}, (err, providers) => {
         if (err) return res.status(500).send({message: "Error getting all providers"})
-        //if (providers.length == 0) return res.status(200).send({message: "Empty collection"})
         res.status(200).send(providers)
     })
 }
