@@ -34,7 +34,7 @@ function saveProvider(req, res) {
 
     provider.save((err, providerStored) => {
         if (err) res.status(500).send('Could not save the provider')
-        res.status(200).send({client: providerStored})
+        res.status(200).send({provider: providerStored})
     })
 }
 
