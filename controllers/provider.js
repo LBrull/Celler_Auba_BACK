@@ -39,7 +39,7 @@ function saveProvider(req, res) {
 }
 
 function updateProvider(req, res) {
-    let providerId = req.params.clientId
+    let providerId = req.params.providerId
     let body = req.body
     Provider.findByIdAndUpdate(providerId, body, (err, updatedProvider) => {
         if (err) res.status(500).send('Could not update the provider')
