@@ -25,7 +25,6 @@ function saveProduct(req, res) {
     product.description = req.body.description
     product.type = req.body.type
     product.price = req.body.price
-
     product.save((err, productStored) => {
         if (err) res.status(500).send({message: `Could not save the product: ${err}`})
         res.status(200).send({product: productStored})
