@@ -33,7 +33,7 @@ function saveClient(req, res) {
     client.accountNumber = req.body.accountNumber
 
     client.save((err, clientStored) => {
-        if (err) res.status(500).send(`Could not save the client: ${err}`)
+        if (err) res.status(409).send(`Could not save the client: ${err}`)
         res.status(200).send({client: clientStored})
     })
 }
