@@ -11,7 +11,7 @@ const clientSchema = Schema({
     "cp" : String,
     "town" : String,
     "address" : String,
-    "dni_nif" : { type: String, required: true, index: { unique: true } },
+    "dni_nif" : String,
     "accountNumber" : String
 },{ versionKey: false })
 
