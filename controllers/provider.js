@@ -43,7 +43,7 @@ function updateProvider(req, res) {
     let body = req.body
     Provider.findByIdAndUpdate(providerId, body, (err, updatedProvider) => {
         if (err) res.status(500).send('Could not update the provider')
-        let newProvider = new Product()
+        let newProvider = new Provider()
         newProvider.providerId = providerId
         newProvider.name = req.body.name
         newProvider.surname = req.body.surname
