@@ -49,7 +49,7 @@ function updateProvider(req, res) {
 
 function deleteProvider(req, res) {
     let providerId = req.params.providerId
-    Client.findById(providerId, (err, provider) => {
+    Provider.findById(providerId, (err, provider) => {
         if (err) res.status(500).send({message: "Error finding provider"})
         provider.remove(err => {
             if (err) res.status(500).send({message: "Error deleting provider"})
