@@ -54,7 +54,7 @@ function updateClient(req, res) {
         newClient.address = req.body.address
         newClient.dni_nif = req.body.dni_nif
         newClient.accountNumber = req.body.accountNumber
-        res.status(200).send({client: updatedClient})
+        res.status(200).send({client: newClient})
     })
 }
 
