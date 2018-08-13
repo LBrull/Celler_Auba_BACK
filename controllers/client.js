@@ -42,7 +42,18 @@ function updateClient(req, res) {
     let clientId = req.params.clientId
     let body = req.body
     Client.findByIdAndUpdate(clientId, body, (err, updatedClient) => {
-        if (err) res.status(500).send('Could not update the client')
+        if (err) res.status(500).send(`Could not update the client: ${err}`)
+        let newClient = new Client()
+        newClient.clientId = clientId
+        newClient.name = req.body.name
+        newClient.surname = req.body.surname
+        newClient.telephone = req.body.telephone
+        newClient.email = req.body.email
+        newClient.cp = req.body.cp
+        newClient.town = req.body.town
+        newClient.address = req.body.address
+        newClient.dni_nif = req.body.dni_nif
+        newClient.accountNumber = req.body.accountNumber
         res.status(200).send({client: updatedClient})
     })
 }
