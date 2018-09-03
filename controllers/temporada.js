@@ -13,6 +13,7 @@ function saveTemporada(req, res) {
     console.log('POST /api/temporada')
     console.log(req.body)
     let temporada = new Temporada()
+    temporada.type = req.body.type
     temporada.date = req.body.date
     temporada.save((err, temporadaStored) => {
         if (err) res.status(500).send('Could not save the temporada')
