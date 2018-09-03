@@ -5,7 +5,8 @@ const Schema = mongoose.Schema
 
 const temporadaSchema = Schema({
     "type" : String,
-    "date" : String
+    "date" : String,
+    "active" : Boolean
 },{ versionKey: false })
 
 module.exports = mongoose.model('Temporada', temporadaSchema, 'temporades')

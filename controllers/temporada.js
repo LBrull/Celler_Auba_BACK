@@ -15,6 +15,7 @@ function saveTemporada(req, res) {
     let temporada = new Temporada()
     temporada.type = req.body.type
     temporada.date = req.body.date
+    temporada.active = req.body.active
     temporada.save((err, temporadaStored) => {
         if (err) res.status(500).send('Could not save the temporada')
         res.status(200).send({temporada: temporadaStored})
