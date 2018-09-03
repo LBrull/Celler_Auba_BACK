@@ -4,6 +4,7 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const temporadaSchema = Schema({
+    "type" : String,
     "date" : String
 },{ versionKey: false })
 
