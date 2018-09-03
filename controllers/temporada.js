@@ -22,6 +22,8 @@ function saveTemporada(req, res) {
 }
 
 function deleteTemporada(req, res) {
+    console.log('DELETE /api/temporada/:temporadaId')
+    console.log('TEMPORADA ID: '+req.params.temporadaId)
     let temporadaId = req.params.temporadaId
     Temporada.findById(temporadaId, (err, temporada) => {
         if (err) res.status(500).send({message: "Error finding temporada"})
