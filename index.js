@@ -9,6 +9,7 @@ const clientController = require('./controllers/client')
 const providerController = require('./controllers/provider')
 const productController = require('./controllers/product')
 const userController = require('./controllers/user')
+const temporadaController = require('./controllers/temporada')
 
 const auth = require('./middlewares/auth')
 const authAdmin = require('./middlewares/authAdmin')
