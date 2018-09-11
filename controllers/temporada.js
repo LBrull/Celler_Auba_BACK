@@ -49,7 +49,7 @@ function updateTemporada(req, res) {
         if (err) res.status(500).send('Could not update the temporada')
         let newTemporada = new Temporada()
         newTemporada.temporadaId = temporadaId
-        newtemporada.type = req.body.type
+        newTemporada.type = req.body.type
         newTemporada.date = req.body.date
         newTemporada.active = req.body.active
         res.status(200).send({temporada: newTemporada})
