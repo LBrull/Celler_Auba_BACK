@@ -35,8 +35,30 @@ function deleteTemporada(req, res) {
     })
 }
 
+function updateTemporada(req, res) {
+    let newTemporadaId = req.params.temporadaId
+    let body = req.body
+    Temporada.findOneAndUpdate({active: true}, {$set:{active:false}}, function(err, doc){
+        if(err){
+            console.log("Could not change the old active temporada to inactive");
+        }
+        console.log(doc);
+    });
+
+    Temporada.findByIdAndUpdate(temporadaId, body, (err, updatedTemporada) => {
+        if (err) res.status(500).send('Could not update the temporada')
+        let newTemporada = new Temporada()
+        newTemporada.temporadaId = temporadaId
+        newtemporada.type = req.body.type
+        newTemporada.date = req.body.date
+        newTemporada.active = req.body.active
+        res.status(200).send({temporada: newTemporada})
+    })
+}
+
 module.exports = {
     getTemporades,
     saveTemporada,
-    deleteTemporada
+    deleteTemporada,
+    updateTemporada
 }
