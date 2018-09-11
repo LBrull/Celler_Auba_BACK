@@ -39,6 +39,7 @@ app.delete('/api/product/:productId', auth, productController.deleteProduct)
 
 app.get('/api/temporades', auth, temporadaController.getTemporades)
 app.post('/api/temporada', auth, temporadaController.saveTemporada)
+app.put('/api/temporada/:temporadaId', auth, temporadaController.updateTemporada)
 app.delete('/api/temporada/:temporadaId', auth, temporadaController.deleteTemporada)
 
 app.get('/api/private', auth, (req,res) => {
