@@ -36,7 +36,7 @@ function deleteTemporada(req, res) {
 }
 
 function updateTemporada(req, res) {
-    let newTemporadaId = req.params.temporadaId
+    let temporadaId = req.params.temporadaId
     let body = req.body
     Temporada.findOneAndUpdate({type: req.body.type, active: true}, {$set:{active:false}}, function(err, doc){
         if(err){
