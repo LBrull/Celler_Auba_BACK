@@ -10,7 +10,7 @@ function getAlbaransIn(req, res) {
 }
 
 function getAlbaransOut(req, res) {
-    Client.find({in: false}, (err, albarans) => {
+    Albara.find({in: false}, (err, albarans) => {
         if (err) return res.status(500).send({message: "Error getting out albarans"})
         res.status(200).send(albarans)
     })
