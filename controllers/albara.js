@@ -1,6 +1,6 @@
 'use strict'
 
-const Client = require('../models/albara')
+const Albara = require('../models/albara')
 
 function getAlbaransIn(req, res) {
     Albara.find({in: true}, (err, albarans) => {
@@ -14,4 +14,8 @@ function getAlbaransOut(req, res) {
         if (err) return res.status(500).send({message: "Error getting out albarans"})
         res.status(200).send(albarans)
     })
+}
+module.exports = {
+    getAlbaransIn,
+    getAlbaransOut
 }
