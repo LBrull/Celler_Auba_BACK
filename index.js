@@ -10,7 +10,7 @@ const providerController = require('./controllers/provider')
 const productController = require('./controllers/product')
 const userController = require('./controllers/user')
 const temporadaController = require('./controllers/temporada')
-const albaraController = require('./controllers/albara')
+//const albaraController = require('./controllers/albara')
 
 const auth = require('./middlewares/auth')
 const authAdmin = require('./middlewares/authAdmin')
@@ -43,8 +43,8 @@ app.post('/api/temporada', auth, temporadaController.saveTemporada)
 app.put('/api/temporada/:temporadaId', auth, temporadaController.updateTemporada)
 app.delete('/api/temporada/:temporadaId', auth, temporadaController.deleteTemporada)
 
-app.get('/api/albaransIn', auth, albaraController.getAlbaransIn)
-app.get('/api/albaransOut', auth, albaraController.getAlbaransOut)
+//app.get('/api/albaransIn', auth, albaraController.getAlbaransIn)
+//app.get('/api/albaransOut', auth, albaraController.getAlbaransOut)
 
 app.get('/api/private', auth, (req,res) => {
     res.status(200).send({message: 'Authorized'})
