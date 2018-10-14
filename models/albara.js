@@ -4,13 +4,13 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const albaraSchema = Schema({
-    "provider" : Provider,
-    "client" : Client,
+    "providerId" : String,
+    "clientId" : String,
     "date" : String,
     "type" : String,
     "in" : Boolean,
     "products" : [{
-        product: product,
+        productId: String,
         quantity: Number
     }]
 },{ versionKey: false })
